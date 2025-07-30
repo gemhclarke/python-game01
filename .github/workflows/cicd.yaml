@@ -22,9 +22,18 @@ jobs:
     # The steps that this job will execute
     # ----------------------------------------------------------
     steps:
-    - name: Install test framework
-      run: |
-        pip install unittest
+
+    # Checkout game code
+    - uses: actions/checkout@v4
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: python -m pip install --upgrade pip setuptools wheel
 
 
     - name: Run unit tests
